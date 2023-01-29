@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'screens/HomePage.dart';
 import 'screens/AppointmentPage.dart';
 import 'screens/ProfilePage.dart';
 import 'screens/DoctorsPage.dart';
+import 'screens/UserMessage.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyWidget());
 }
 
@@ -35,86 +42,95 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        extendBody: true,
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          elevation: 0,
-          // leading: const Icon(
-          //   Icons.menu,
-          //   color: Colors.black,
-          // ),
-          actions: const [
-            Icon(
-              FontAwesomeIcons.message,
-              color: Colors.black,
-            ),
-          ],
-          backgroundColor: Colors.transparent,
-        ),
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                decoration: BoxDecoration(color: Colors.grey[300]),
-                // margin: const EdgeInsets.only(bottom: 10),
-                padding: const EdgeInsets.only(bottom: 0, top: 50),
-                child: Column(
-                  children: const [
-                    CircleAvatar(
-                      foregroundImage:
-                          AssetImage("assets/images/femaldoc1.jpg"),
-                      maxRadius: 50,
-                    ),
-                    // SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Text(
-                    //   "Dr. Kidist Ketema",
-                    //   style: TextStyle(fontWeight: FontWeight.w400),
-                    //   textAlign: TextAlign.center,
-                    // ),
-                    // SizedBox(
-                    //   height: 7,
-                    // ),
-                    // Text(
-                    //   "Mental Psychologist",
-                    //   style: TextStyle(fontWeight: FontWeight.w400),
-                    //   textAlign: TextAlign.center,
-                    // ),
-                  ],
-                ),
+      home: Builder(
+        builder: (context) => Scaffold(
+          extendBody: true,
+          backgroundColor: Colors.grey[200],
+          appBar: AppBar(
+            foregroundColor: Colors.black,
+            elevation: 0,
+            // leading: const Icon(
+            //   Icons.menu,
+            //   color: Colors.black,
+            // ),
+            actions: [
+              IconButton(
+                icon: const Icon(FontAwesomeIcons.comment),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UserMessage()),
+                  );
+                },
               ),
             ],
+            backgroundColor: Colors.transparent,
           ),
-        ),
-        body: _children.elementAt(_currentIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          fixedColor: Colors.black,
-          type: BottomNavigationBarType.fixed,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.house),
-              label: 'Home',
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  decoration: BoxDecoration(color: Colors.grey[300]),
+                  // margin: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 0, top: 50),
+                  child: Column(
+                    children: const [
+                      CircleAvatar(
+                        foregroundImage:
+                            AssetImage("assets/images/femaldoc1.jpg"),
+                        maxRadius: 50,
+                      ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // Text(
+                      //   "Dr. Kidist Ketema",
+                      //   style: TextStyle(fontWeight: FontWeight.w400),
+                      //   textAlign: TextAlign.center,
+                      // ),
+                      // SizedBox(
+                      //   height: 7,
+                      // ),
+                      // Text(
+                      //   "Mental Psychologist",
+                      //   style: TextStyle(fontWeight: FontWeight.w400),
+                      //   textAlign: TextAlign.center,
+                      // ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.userDoctor),
-              label: 'Docotors',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.calendarCheck),
-              label: 'Appointment',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle,
-                size: 30,
+          ),
+          body: _children.elementAt(_currentIndex),
+          bottomNavigationBar: BottomNavigationBar(
+            fixedColor: Colors.black,
+            type: BottomNavigationBarType.fixed,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.house),
+                label: 'Home',
               ),
-              label: 'Profile',
-            ),
-          ],
-          currentIndex: _currentIndex,
-          onTap: onTapBar,
+              BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.userDoctor),
+                label: 'Docotors',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.calendarCheck),
+                label: 'Appointment',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.account_circle,
+                  size: 30,
+                ),
+                label: 'Profile',
+              ),
+            ],
+            currentIndex: _currentIndex,
+            onTap: onTapBar,
+          ),
         ),
       ),
     );
