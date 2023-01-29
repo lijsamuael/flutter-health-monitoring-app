@@ -12,7 +12,7 @@ class Category extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       // padding: const EdgeInsets.all(10),
-      width: 100,
+      width: 170,
       height: 150,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

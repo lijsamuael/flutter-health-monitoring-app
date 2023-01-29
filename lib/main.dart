@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import './home/Header.dart';
-import './home/Category.dart';
-import 'home/Doctorscard.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'screens/HomePage.dart';
+import 'screens/AppointmentPage.dart';
+import 'screens/ProfilePage.dart';
+import 'screens/DoctorsPage.dart';
 
 void main() {
   runApp(const MyWidget());
@@ -16,6 +18,20 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  int _currentIndex = 0;
+  static const List<Widget> _children = [
+    HomePage(),
+    DoctorsPage(),
+    AppointmentPage(),
+    ProfilePage(),
+  ];
+
+  void onTapBar(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,10 +40,10 @@ class _MyWidgetState extends State<MyWidget> {
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           elevation: 0,
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
+          // leading: const Icon(
+          //   Icons.menu,
+          //   color: Colors.black,
+          // ),
           actions: const [
             Icon(
               FontAwesomeIcons.message,
@@ -36,55 +52,43 @@ class _MyWidgetState extends State<MyWidget> {
           ],
           backgroundColor: Colors.transparent,
         ),
-        body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
+        drawer: Drawer(
+          child: ListView(
             children: [
-              const Header(),
-              const Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  "Specialists",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                height: 150,
-                margin: const EdgeInsets.only(right: 10),
-                width: double.infinity,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Category("Radiographer"),
-                    Category("Sychatrist"),
-                    Category("Dentist"),
-                    Category("Heart Specialist"),
-                    Category("Heart Specialist"),
-                    Category("Heart Specialist"),
-                    Category("Heart Specialist"),
-                  ],
-                ),
-              ),
-              const Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  "Available Doctors",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Expanded(
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Doctorscard(),
-                    Doctorscard(),
-                    Doctorscard(),
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.grey[300]),
+                // margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 0, top: 50),
+                child: Column(
+                  children: const [
+                    CircleAvatar(
+                      foregroundImage:
+                          AssetImage("assets/images/femaldoc1.jpg"),
+                      maxRadius: 50,
+                    ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    // Text(
+                    //   "Dr. Kidist Ketema",
+                    //   style: TextStyle(fontWeight: FontWeight.w400),
+                    //   textAlign: TextAlign.center,
+                    // ),
+                    // SizedBox(
+                    //   height: 7,
+                    // ),
+                    // Text(
+                    //   "Mental Psychologist",
+                    //   style: TextStyle(fontWeight: FontWeight.w400),
+                    //   textAlign: TextAlign.center,
+                    // ),
                   ],
                 ),
               ),
             ],
           ),
         ),
+        body: _children.elementAt(_currentIndex),
         bottomNavigationBar: BottomNavigationBar(
           fixedColor: Colors.black,
           type: BottomNavigationBarType.fixed,
@@ -112,6 +116,8 @@ class _MyWidgetState extends State<MyWidget> {
               label: 'Profile',
             ),
           ],
+          currentIndex: _currentIndex,
+          onTap: onTapBar,
         ),
       ),
     );

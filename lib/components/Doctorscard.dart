@@ -8,7 +8,7 @@ class Doctorscard extends StatelessWidget {
     return Container(
       height: 200,
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 14),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
