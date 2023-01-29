@@ -94,10 +94,7 @@ class _MyWidgetState extends State<MyWidget> {
           type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                size: 30,
-              ),
+              icon: Icon(FontAwesomeIcons.house),
               label: 'Home',
             ),
             BottomNavigationBarItem(
