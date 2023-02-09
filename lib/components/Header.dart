@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../screens/DiseasePrediction.dart';
+
 class Header extends StatelessWidget {
-  
   const Header({super.key});
 
   @override
@@ -57,8 +58,8 @@ class Header extends StatelessWidget {
                 SizedBox(
                   width: 220,
                   child: Column(
-                    children: const [
-                      Align(
+                    children:  [
+                      const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Lookining For Your Desire Specialist Doctors?",
@@ -66,15 +67,21 @@ class Header extends StatelessWidget {
                               fontSize: 14,
                             ),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Or tell us sympthom we will help you cure yourself!",
-                          style: TextStyle(
-                            fontSize: 14,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push((context), MaterialPageRoute(
+                        builder: (context) =>  const DiseasePrediction()));
+                           },
+                          child: const Text(
+                            "Or tell us sympthom we will help you cure yourself!",
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ),
