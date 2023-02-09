@@ -82,7 +82,7 @@ class _MyWidgetState extends State<MyWidget> {
                 DrawerHeader(
                   decoration: BoxDecoration(color: Colors.grey[300]),
                   // margin: const EdgeInsets.only(bottom: 10),
-                  padding: const EdgeInsets.only(bottom: 0, top: 50),
+                  padding: const EdgeInsets.only(bottom: 0, top: 30),
                   child: Column(
                     children: const [
                       CircleAvatar(
@@ -90,24 +90,31 @@ class _MyWidgetState extends State<MyWidget> {
                             AssetImage("assets/images/femaldoc1.jpg"),
                         maxRadius: 50,
                       ),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Text(
-                      //   "Dr. Kidist Ketema",
-                      //   style: TextStyle(fontWeight: FontWeight.w400),
-                      //   textAlign: TextAlign.center,
-                      // ),
-                      // SizedBox(
-                      //   height: 7,
-                      // ),
-                      // Text(
-                      //   "Mental Psychologist",
-                      //   style: TextStyle(fontWeight: FontWeight.w400),
-                      //   textAlign: TextAlign.center,
-                      // ),
+                      Center(
+                        child: Text("Elsabet Molla"),
+                      )
                     ],
                   ),
+                ),
+                Column(
+                  children: const [
+                    ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text("Profile"),
+                    ),
+                    ListTile(
+                      leading: Icon(FontAwesomeIcons.gear),
+                      title: Text("Setting"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.logout_sharp),
+                      title: Text("Logout"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.help),
+                      title: Text("Help"),
+                    )
+                  ],
                 ),
               ],
             ),
