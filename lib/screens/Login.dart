@@ -145,32 +145,38 @@ class Message extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    FloatingActionButton.extended(
-                      label: const Text('Google'), // <-- Text
-                      backgroundColor: const Color.fromARGB(255, 200, 175, 224),
-                      icon: const Icon(
-                        FontAwesomeIcons.google,
-                        size: 24.0,
+                    Flexible(
+                      child: FloatingActionButton.extended(
+                        label: const Text('Google'), // <-- Text
+                        backgroundColor: const Color.fromARGB(255, 200, 175, 224),
+                        icon: const Icon(
+                          FontAwesomeIcons.google,
+                          size: 24.0,
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () {},
                     ),
-                    FloatingActionButton.extended(
-                      label: const Text('Github'),
-                      backgroundColor: const Color.fromARGB(255, 200, 175, 224),
-                      icon: const Icon(
-                        FontAwesomeIcons.github,
-                        size: 24.0,
+                    Flexible(
+                      child: FloatingActionButton.extended(
+                        label: const Text('Github'),
+                        backgroundColor: const Color.fromARGB(255, 200, 175, 224),
+                        icon: const Icon(
+                          FontAwesomeIcons.github,
+                          size: 24.0,
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () {},
                     ),
-                    FloatingActionButton.extended(
-                      label: const Text('Facebook'), // <-- Text
-                      backgroundColor: const Color.fromARGB(255, 200, 175, 224),
-                      icon: const Icon(
-                        FontAwesomeIcons.facebook,
-                        size: 24.0,
+                    Flexible(
+                      child: FloatingActionButton.extended(
+                        label: const Text('Facebook'), // <-- Text
+                        backgroundColor: const Color.fromARGB(255, 200, 175, 224),
+                        icon: const Icon(
+                          FontAwesomeIcons.facebook,
+                          size: 24.0,
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () {},
                     ),
                   ],
                 )

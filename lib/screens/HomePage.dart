@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/Doctorscard.dart';
+import '../components/DoctorsCard.dart';
 import '../components/Header.dart';
 import '../components/Category.dart';
 

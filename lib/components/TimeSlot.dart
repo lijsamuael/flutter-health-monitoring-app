@@ -6,7 +6,6 @@ class TimeSlot extends StatelessWidget {
   }
 
   String time = "";
-
   @override
   Widget build(BuildContext context) {
     return Container(

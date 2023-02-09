@@ -8,8 +8,7 @@ class UserMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return  Scaffold(
         backgroundColor: Colors.grey[200],
         extendBody: true,
         appBar: AppBar(
@@ -42,29 +41,7 @@ class UserMessage extends StatelessWidget {
             MessageCard('5'),
             MessageCard('6'),
             MessageCard(''),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
-            // MessageCard(),
           ],
-        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health/screens/ChatScreen.dart';
 
 import '../screens/Login.dart';
 
@@ -6,16 +7,14 @@ class MessageCard extends StatelessWidget {
   MessageCard(String messages, {super.key}) {
     this.messages = messages;
   }
-
   String messages = "";
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Message()),
+          MaterialPageRoute(builder: (context) =>const ChatScreen()),
         );
       },
       child: Container(

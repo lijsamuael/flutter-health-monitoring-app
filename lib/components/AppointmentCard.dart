@@ -1,8 +1,6 @@
+
 import 'package:flutter/material.dart';
 import 'package:health/screens/AppointmentSetting.dart';
-
-import '../screens/AppointmentSetting.dart';
-
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({super.key});
 
