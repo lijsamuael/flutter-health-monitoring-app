@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:health/screens/ChatScreen.dart';
+import 'package:health/screens/DoctorDetail.dart';
+import 'package:health/screens/Login.dart';
+import 'package:health/screens/ProfileScreen.dart';
 import 'screens/HomePage.dart';
 import 'screens/AppointmentPage.dart';
-import 'screens/ProfilePage.dart';
-import 'screens/DoctorsPage.dart';
+import 'screens/ProfileScreen.dart';
+import 'screens/SpecialistScreen.dart';
 import 'screens/UserMessage.dart';
 
 
@@ -28,9 +30,9 @@ class _MyWidgetState extends State<MyWidget> {
   int _currentIndex = 0;
   static const List<Widget> _children = [
     HomePage(),
-    DoctorsPage(),
+    SpecialistScreen(),
     AppointmentPage(),
-    ProfilePage(),
+    ProfileScreen(),
   ];
 
   void onTapBar(int index) {
@@ -42,6 +44,13 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        routes: <String, WidgetBuilder> {
+     
+    'Login':(BuildContext context) => Message(),
+    'ChatScreen' : (BuildContext context) =>const ChatScreen(),
+    'DoctorDetail' : (BuildContext context) =>DoctorDetail(),
+     },
+      debugShowCheckedModeBanner: false,
       home: Builder(
         builder: (context) => Scaffold(
           extendBody: true,
@@ -104,6 +113,7 @@ class _MyWidgetState extends State<MyWidget> {
             ),
           ),
           body: _children.elementAt(_currentIndex),
+          
           bottomNavigationBar: BottomNavigationBar(
             fixedColor: Colors.black,
             type: BottomNavigationBarType.fixed,

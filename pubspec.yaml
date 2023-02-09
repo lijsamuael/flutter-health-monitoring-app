@@ -40,6 +40,8 @@ dependencies:
   table_calendar: ^3.0.9
   firebase_auth: ^4.2.2
   firebase_core: ^2.4.1
+  flutter_phone_direct_caller: ^2.1.1
+  provider: ^6.0.0
 
 dev_dependencies:
   flutter_test:
