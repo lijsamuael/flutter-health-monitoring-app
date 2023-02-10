@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ChatReceiver extends StatelessWidget {
   ChatReceiver({super.key, required this.message});
   String message;
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(

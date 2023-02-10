@@ -54,10 +54,11 @@ class SpecialistScreen extends StatelessWidget {
          child: Doctorscard(), 
          ),
          Container(
-         margin:EdgeInsets.symmetric(horizontal: 10),
+         margin:EdgeInsets.only(bottom: 20),
          child: Doctorscard(), 
          ),
-          ]),
+        ]
+      ),
  ),
      
     );

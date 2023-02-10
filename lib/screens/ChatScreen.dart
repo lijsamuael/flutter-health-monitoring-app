@@ -31,14 +31,14 @@ class _ChatAcreenState extends State<ChatScreen> {
                      ChatSender(message: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface "),
                     ChatReceiver(message: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface "),
                     ChatSender(message: "hello chat")
-                       ], 
+                    ], 
                  ),
              
            ) , 
        Container(
-         margin: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-         height: 61,
-         child: Row(
+        margin: EdgeInsets.only(bottom:0),
+        height: 61,
+        child: Row(
         children: [
           Expanded(
             child: Container(
@@ -80,8 +80,7 @@ class _ChatAcreenState extends State<ChatScreen> {
         ),
       )],
        ),  
-      ),
-      
+      ), 
     );
 }
 }
