@@ -42,6 +42,7 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   provider: ^6.0.0
   email_validator: ^2.1.17
+  tflite: ^1.1.2
   # cloud_firestore: ^4.3.2
 
 dev_dependencies:
@@ -70,6 +71,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/models/
+    - assets/labels/
   # https://flutter.dev/assets-and-images/#resolution-aware
 
   # For details regarding adding assets from package dependencies, see
