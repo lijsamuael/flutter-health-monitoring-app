@@ -10,13 +10,11 @@ class User {
   final String ?name;
   final String ?urlAvatar;
   final DateTime ?lastMessageTime;
-
   const User({
      this.lastMessageTime,
      this.idUser,
      this.name,
-     this.urlAvatar,
-   
+     this.urlAvatar, 
   });
 
   User copyWith({

@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
+            SizedBox(
               height: 160,
               child: Stack(
                 children: [
@@ -55,14 +55,14 @@ class ProfileScreen extends StatelessWidget {
                   //   color:Color.fromARGB(255, 247, 242, 242)
                   //   ),
                   // ),
-                  Positioned(
+                  const Positioned(
+                      left: 50,
+                      top: 20,
                       child: Text("EditProfile ",
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              color: Colors.black)),
-                      left: 50,
-                      top: 20),
+                              color: Colors.black))),
                 ],
               ),
             ),
@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 40, 61, 177),
+                  backgroundColor: const Color.fromARGB(255, 40, 61, 177),
                   minimumSize: const Size.fromHeight(45), // NEW
                 ),
                 onPressed: () {},

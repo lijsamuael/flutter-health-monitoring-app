@@ -5,7 +5,7 @@ import '../widgets/CustomAppBar.dart';
 import '../widgets/CustomOutlinedButton.dart';
 
 class DoctorDetail extends StatelessWidget {
-  DoctorDetail({super.key});
+  const DoctorDetail({super.key});
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -30,7 +30,7 @@ class DoctorDetail extends StatelessWidget {
                         //       ),
                         //     ),
                         //  ),
-                     decoration:BoxDecoration(   
+                     decoration:const BoxDecoration(   
                        image:DecorationImage(
                         image: AssetImage('assets/images/femaldoc1.jpg',
                        ) ,
@@ -38,8 +38,6 @@ class DoctorDetail extends StatelessWidget {
                        
                        )
                      )
-
-
                           ),
                     
                       Container(

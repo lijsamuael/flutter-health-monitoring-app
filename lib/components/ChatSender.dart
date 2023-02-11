@@ -2,15 +2,17 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:health/models/Message.dart';
 
 class ChatSender extends StatelessWidget {
  ChatSender({super.key, required this.message});
-  String message;
+  Message message;
   @override
   Widget build(BuildContext context) {
+    
     return Align(
       child: Container(
-        child:  Text(message),
+        child:  Text(message.message),
         margin: const EdgeInsets.only(
           top: 2,
           left: 30,

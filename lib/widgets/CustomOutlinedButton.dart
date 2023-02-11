@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:health/state/ChatedUserState.dart';
+import 'package:provider/provider.dart';
 
+import '../screens/ChatScreen.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   CustomOutlinedButton(
@@ -16,13 +19,18 @@ class CustomOutlinedButton extends StatelessWidget {
       child: OutlinedButton.icon(
         onPressed: (() => {
          if(icon==Icons.message){
-         Navigator.of(context).pushNamed('ChatScreen')
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatScreen(idUser: context.read<ChatedUserState>().getCurrentUser(),),
+             ),
+          )
          }
+         
          else if (icon==Icons.video_call){
           callNumber
          }
-         else{
-          
+         else{  
          }
         }
         ),

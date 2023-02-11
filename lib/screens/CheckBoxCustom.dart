@@ -4,11 +4,9 @@ class CheckBoxCustom extends StatefulWidget {
   bool checkedValue;
   String label;
   CheckBoxCustom({required this.label, required this.checkedValue, super.key});
-
   @override
   State<CheckBoxCustom> createState() => _CheckBoxCustomState();
 }
-
 class _CheckBoxCustomState extends State<CheckBoxCustom> {
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class _CheckBoxCustomState extends State<CheckBoxCustom> {
           widget.checkedValue = newValue!;
         });
       },
-      controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+      controlAffinity: ListTileControlAffinity.leading,
     );
   }
 }

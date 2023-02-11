@@ -1,5 +1,4 @@
 import 'models/User.dart';
-import 'models/User.dart';
 class Users {
   static get initUsers => <User>[
         User(

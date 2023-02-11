@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Data.dart';
-
 import '../models/Message.dart';
 import '../models/User.dart';
-
 import '../Utils.dart';
-
 class FirebaseApi {
   static Stream<List<User>> getUsers() => FirebaseFirestore.instance
       .collection('users')
@@ -22,23 +19,19 @@ class FirebaseApi {
       createdAt: DateTime.now(),
     );
     await refMessages.add(newMessage.toJson());
-
     final refUsers = FirebaseFirestore.instance.collection('users');
     await refUsers
         .doc(idUser)
         .update({UserField.lastMessageTime: DateTime.now()});
   }
-
   static Stream<List<Message>> getMessages(String idUser) =>
       FirebaseFirestore.instance
           .collection('chats/$idUser/messages')
           .orderBy(MessageField.createdAt, descending: true)
           .snapshots()
           .transform(Utils.transformer(Message.fromJson));
-
   static Future addRandomUsers(List<User> users) async {
     final refUsers = FirebaseFirestore.instance.collection('users');
-
     final allUsers = await refUsers.get();
     if (allUsers.size != 0) {
       return;
@@ -49,5 +42,5 @@ class FirebaseApi {
         await userDoc.set(newUser.toJson());
       }
     }
-  }
+  } 
 }
