@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:health/api/FirebaseApi.dart';
+import 'package:health/models/User.dart';
 import '../components/MessageCard.dart';
-
 class UserMessage extends StatelessWidget {
   const UserMessage({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: Colors.grey[200],
         extendBody: true,
         appBar: AppBar(
@@ -28,21 +27,38 @@ class UserMessage extends StatelessWidget {
             ),
           ),
         ),
-        body: ListView(
-          children: [
-            MessageCard('1'),
-            MessageCard(''),
-            MessageCard(''),
-            MessageCard('3'),
-            MessageCard(''),
-            MessageCard(''),
-            MessageCard('1'),
-            MessageCard('1'),
-            MessageCard('5'),
-            MessageCard('6'),
-            MessageCard(''),
-          ],
-      ),
-    );
+        body: SafeArea(
+           child: StreamBuilder<List<User>>(
+          stream: FirebaseApi.getUsers(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+              default: if (snapshot.hasError) {
+                  print(snapshot.error);
+                  return buildText('Something Went Wrong Try later');
+                } else {
+                  final users = snapshot.data;
+
+                  if (users!.isEmpty) {
+                    return buildText('No Users Found');
+                  } else {
+                    return ListView.builder(itemBuilder: ((context, index) => 
+                     MessageCard(message:"new message",user:users[index])
+                    ),
+                    itemCount: users.length,
+                    );
+                  }
+                }
+            }
+          },
+        )));
   }
+
+  Widget buildText(String text) => Center(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 24, color: Colors.white),
+        ),
+      );
 }

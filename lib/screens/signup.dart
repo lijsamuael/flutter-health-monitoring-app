@@ -25,20 +25,24 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     Future signup() async {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
+              email: emailController.text.trim(),
+              password: passwordController.text.trim(),
+            )
+            .then((value) => { 
+           emailController.clear(),
+           passwordController.clear(),
+           phoneNumberController.clear(),
+           fullNameController.clear()
+
+            });
       } on FirebaseAuthException catch (e) {
         print(e);
       }
     }
-
     return Scaffold(
-      // extendBody: true,
       body: SizedBox(
         width: double.infinity,
         height: size.height,
@@ -94,7 +98,6 @@ class Signup extends StatelessWidget {
                   child: TextFormField(
                     controller: emailController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-
                     validator: (email) =>
                         email != null && !EmailValidator.validate(email)
                             ? 'Enter a valid email!'
@@ -187,7 +190,7 @@ class Signup extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Have an account? ",
+                      "Have an account?",
                       style: TextStyle(),
                     ),
                     TextButton(

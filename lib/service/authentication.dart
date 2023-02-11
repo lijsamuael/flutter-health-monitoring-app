@@ -16,7 +16,6 @@ class AuthenticationHelper {
       return e.message;
     }
   }
-
   //SIGN IN METHOD
   Future signIn({required String email, required String password}) async {
     try {
@@ -26,11 +25,9 @@ class AuthenticationHelper {
       return e.message;
     }
   }
-
   //SIGN OUT METHOD
   Future signOut() async {
     await _auth.signOut();
-
     print('signout');
   }
 }

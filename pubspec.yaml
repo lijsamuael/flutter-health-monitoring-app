@@ -43,7 +43,8 @@ dependencies:
   provider: ^6.0.0
   email_validator: ^2.1.17
   tflite: ^1.1.2
-  # cloud_firestore: ^4.3.2
+  cloud_firestore: ^4.3.2
+  flutter_profile_picture: ^2.0.0
 
 dev_dependencies:
   flutter_test:

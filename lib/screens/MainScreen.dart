@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:health/screens/ChatScreen.dart';
 import 'package:health/screens/DoctorDetail.dart';
 import 'package:health/screens/Login.dart';
 import 'package:health/screens/ProfileScreen.dart';
 import 'HomePage.dart';
 import 'AppointmentPage.dart';
-import 'ProfileScreen.dart';
 import 'SpecialistScreen.dart';
 import 'UserMessage.dart';
 
@@ -41,7 +39,6 @@ class _MainScreenState extends State<MainScreen> {
     return MaterialApp(
       routes: <String, WidgetBuilder>{
         'Login': (BuildContext context) => Login(),
-        'ChatScreen': (BuildContext context) => const ChatScreen(),
         'DoctorDetail': (BuildContext context) => DoctorDetail(),
       },
       debugShowCheckedModeBanner: false,
@@ -52,10 +49,6 @@ class _MainScreenState extends State<MainScreen> {
           appBar: AppBar(
             foregroundColor: Colors.black,
             elevation: 0,
-            // leading: const Icon(
-            //   Icons.menu,
-            //   color: Colors.black,
-            // ),
             actions: [
               IconButton(
                 icon: const Icon(FontAwesomeIcons.comment),
@@ -63,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const UserMessage()),
+                     builder: (context) => const UserMessage()),
                   );
                 },
               ),
@@ -75,17 +68,23 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 DrawerHeader(
                   decoration: BoxDecoration(color: Colors.grey[300]),
-                  // margin: const EdgeInsets.only(bottom: 10),
                   padding: const EdgeInsets.only(bottom: 0, top: 30),
                   child: Column(
                     children: [
-                      const CircleAvatar(
-                        foregroundImage:
-                            AssetImage("assets/images/femaldoc1.jpg"),
-                        maxRadius: 50,
-                      ),
+                      //  CircleAvatar(
+                      //   foregroundImage:
+                      //       AssetImage(user.photoURL??""),
+                      //   maxRadius: 50,
+                      // ),
+
+                      ProfilePicture(
+                      name: user.email!.toUpperCase()??"Unknown User",
+                      radius: 50,
+                       fontsize: 40,
+                       tooltip: true,
+                    ),
                       Center(
-                        child: Text(user.email!),
+                        child: Text(user.email??""),
                       )
                     ],
                   ),

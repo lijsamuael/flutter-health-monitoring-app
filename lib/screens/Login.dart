@@ -25,12 +25,18 @@ class Login extends StatelessWidget {
 
     Future signin() async {
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        );
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim(),
+            )
+            .then((value) => { 
+             
+           emailController.clear(),
+           passwordController.clear()
+            });
       } on FirebaseAuthException catch (e) {
-        print(e);
+        print("there is an error in login");
       }
     }
 

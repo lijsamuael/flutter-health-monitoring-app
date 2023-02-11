@@ -20,6 +20,8 @@ class SpecialistScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.blue,
                         ),
+                        margin: EdgeInsets.only(right: 5),
+                        padding: EdgeInsets.all(4),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -30,8 +32,6 @@ class SpecialistScreen extends StatelessWidget {
                             Container(child: Text("34"))
                           ],
                         ),
-                        margin: EdgeInsets.only(right: 5),
-                        padding: EdgeInsets.all(4),
                       )),
                   itemCount: 10,
                   scrollDirection: Axis.horizontal,
@@ -54,10 +54,11 @@ class SpecialistScreen extends StatelessWidget {
          child: Doctorscard(), 
          ),
          Container(
-         margin:EdgeInsets.symmetric(horizontal: 10),
+         margin:EdgeInsets.only(bottom: 20),
          child: Doctorscard(), 
          ),
-          ]),
+        ]
+      ),
  ),
      
     );
