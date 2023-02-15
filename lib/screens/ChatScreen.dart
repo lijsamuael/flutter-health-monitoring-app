@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health/components/ChatAccepter.dart';
 import 'package:health/components/ChatSender.dart';
 import 'package:health/widgets/CustomAppBar.dart';
-import '../Data.dart';
+import 'package:provider/provider.dart';
 import '../api/FirebaseApi.dart';
 import '../models/Message.dart';
+import '../state/ChatedUserState.dart';
 
 class ChatScreen extends StatefulWidget {
   String idUser;
@@ -15,13 +17,17 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final _controller = TextEditingController();
-
   String customMessage = '';
 
   @override
   Widget build(BuildContext context) {
+    final idUser = ModalRoute.of(context)!.settings.arguments.toString();
+    final Currentuser = FirebaseAuth.instance.currentUser!.uid;
+    widget.idUser = idUser;
     return Scaffold(
-      appBar: CustomAppBar(title: "Message"),
+      appBar: CustomAppBar(
+        title: context.read<ChatedUserState>().getUserName,
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -31,7 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
                 child: StreamBuilder<List<Message>>(
-              stream: FirebaseApi.getMessages(widget.idUser),
+              stream: FirebaseApi.getMessages(widget.idUser,Currentuser),
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
@@ -41,7 +47,6 @@ class _ChatScreenState extends State<ChatScreen> {
                       return buildText('Something Went Wrong Try later');
                     } else {
                       final messages = snapshot.data;
-
                       return messages!.isEmpty
                           ? buildText('Say Hi..')
                           : ListView.builder(
@@ -51,7 +56,9 @@ class _ChatScreenState extends State<ChatScreen> {
                               itemBuilder: (context, index) {
                                 final message = messages[index];
                                 return isSenderOrAccepter(
-                                    message, message.idUser == myId);
+                                    message,
+                                    message.idUser ==
+                                        FirebaseAuth.instance.currentUser!.uid);
                               },
                             );
                     }
@@ -59,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             )),
             Container(
-              margin: const EdgeInsets.only(bottom: 0,right:5,left:5),
+              margin: const EdgeInsets.only(bottom: 0, right: 5, left: 5),
               height: 61,
               child: Row(
                 children: [
@@ -79,8 +86,8 @@ class _ChatScreenState extends State<ChatScreen> {
                         children: [
                           IconButton(
                               icon: const Icon(
-                              Icons.image_outlined,
-                              color: Colors.blueAccent,
+                                Icons.image_outlined,
+                                color: Colors.blueAccent,
                               ),
                               onPressed: () {}),
                           Expanded(
@@ -96,18 +103,20 @@ class _ChatScreenState extends State<ChatScreen> {
                                 customMessage = value;
                               }),
                             ),
-                          ),                       
-                         GestureDetector(
-                      onTap: customMessage.trim().isEmpty ? null : sendMessage,
-                       child: Padding(
-                         padding: const EdgeInsets.only(right: 13),
-                         child: const Icon(Icons.send, color:Color(0xFF267ebd),
-                          size:30,
-                         
-                         ),
-                       ),
-              
-            ),
+                          ),
+                          GestureDetector(
+                            onTap: customMessage.trim().isEmpty
+                                ? null
+                                : sendMessage,
+                            child: const Padding(
+                              padding: EdgeInsets.only(right: 13),
+                              child: Icon(
+                                Icons.send,
+                                color: Color(0xFF267ebd),
+                                size: 30,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -135,10 +144,11 @@ class _ChatScreenState extends State<ChatScreen> {
       return ChatAccepter(message: message);
     }
   }
+
   void sendMessage() async {
-    print("hello bro");
     FocusScope.of(context).unfocus();
-    await FirebaseApi.uploadMessage(widget.idUser,customMessage);
-    _controller.clear();
+    await FirebaseApi.uploadMessage(widget.idUser, customMessage)
+        .then((value) => _controller.clear(),
+        );
   }
 }

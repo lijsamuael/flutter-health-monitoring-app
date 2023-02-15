@@ -7,19 +7,19 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text( this.label,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-          SizedBox(
+          Text( label,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+          const SizedBox(
             height: 10,
           ),
           SizedBox(
             child: TextField(
-              decoration: InputDecoration(border: OutlineInputBorder(),
-              suffixIcon: Icon(this.icon)
+              decoration: InputDecoration(border: const OutlineInputBorder(),
+              suffixIcon: Icon(icon)
               ),
             ),
           ),

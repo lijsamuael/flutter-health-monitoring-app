@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../api/FirebaseApi.dart';
 import '../components/DoctorsCard.dart';
 import '../components/Header.dart';
 import '../components/Category.dart';
@@ -60,6 +61,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+       
           ),
         ],
       ),

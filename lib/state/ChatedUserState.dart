@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 
 class ChatedUserState extends ChangeNotifier {
-  String? idUser;
-  String? name;
-  String? urlAvatar;
+  static String? idUser;
+  static String? name;
+  static String? urlAvatar;
   DateTime? lastMessageTime;
-  ChatedUserState(
-      {this.idUser, this.name, this.urlAvatar, this.lastMessageTime});
-
   String getCurrentUser() {
-    return this.idUser??"no id";
-    notifyListeners();
+    return idUser ?? "no id";
   }
 
-  setUser(idUser) {
-    this.idUser = idUser;
+ String  get getUserName {
+    return name ?? "NO User";
+  }
+  String get  getUserId {
+    return idUser ?? "No user";
+  }
+  String get  photoUrl {
+    return urlAvatar ?? "No user";
+  }
+  void setUserId(String s) {
+    idUser = s;
+    notifyListeners();
+  }
+  void setUserName(String s) {
+    name = s;
     notifyListeners();
   }
 }

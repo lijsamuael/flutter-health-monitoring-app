@@ -28,37 +28,38 @@ class UserMessage extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-           child: StreamBuilder<List<User>>(
+           child: StreamBuilder<List<CUser>>(
           stream: FirebaseApi.getUsers(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return Center(child: CircularProgressIndicator());
-              default: if (snapshot.hasError) {
+                return const Center(child: CircularProgressIndicator());
+              default:
+               if (snapshot.hasError) {
                   print(snapshot.error);
                   return buildText('Something Went Wrong Try later');
                 } else {
                   final users = snapshot.data;
-
                   if (users!.isEmpty) {
                     return buildText('No Users Found');
                   } else {
-                    return ListView.builder(itemBuilder: ((context, index) => 
-                     MessageCard(message:"new message",user:users[index])
+                    return ListView.builder(   
+                      itemBuilder: ((context, index) => (
+                     MessageCard(message:"new message",user:users[index]))
                     ),
                     itemCount: users.length,
                     );
                   }
-                }
+               }
             }
           },
-        )));
+       )
+       ));
   }
-
   Widget buildText(String text) => Center(
         child: Text(
           text,
-          style: TextStyle(fontSize: 24, color: Colors.white),
+          style: const TextStyle(fontSize: 24, color: Colors.white),
         ),
       );
 }

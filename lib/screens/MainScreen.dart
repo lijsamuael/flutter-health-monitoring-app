@@ -35,7 +35,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-
     return MaterialApp(
       routes: <String, WidgetBuilder>{
         'Login': (BuildContext context) => Login(),
@@ -76,9 +75,8 @@ class _MainScreenState extends State<MainScreen> {
                       //       AssetImage(user.photoURL??""),
                       //   maxRadius: 50,
                       // ),
-
                       ProfilePicture(
-                      name: user.email!.toUpperCase()??"Unknown User",
+                      name: user.email!.toUpperCase(),
                       radius: 50,
                        fontsize: 40,
                        tooltip: true,

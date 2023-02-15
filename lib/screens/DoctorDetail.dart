@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:health/components/AboutComponent.dart';
+import 'package:health/state/ChatedUserState.dart';
+import 'package:provider/provider.dart';
 import '../widgets/CustomAppBar.dart';
 import '../widgets/CustomOutlinedButton.dart';
 
@@ -8,8 +10,10 @@ class DoctorDetail extends StatelessWidget {
   const DoctorDetail({super.key});
   @override
   Widget build(BuildContext context) {
+    var userInfo=Provider.of<ChatedUserState>(context,listen: false);
     return  Scaffold(
-            appBar: CustomAppBar(title: 'Doctor Kidist'),
+            appBar: CustomAppBar(title:userInfo.getUserName,
+ ),
             body: SingleChildScrollView(
               child: Container(
                 margin: const EdgeInsets.all(10),
@@ -30,10 +34,9 @@ class DoctorDetail extends StatelessWidget {
                         //       ),
                         //     ),
                         //  ),
-                     decoration:const BoxDecoration(   
+                     decoration: BoxDecoration(   
                        image:DecorationImage(
-                        image: AssetImage('assets/images/femaldoc1.jpg',
-                       ) ,
+                        image: NetworkImage(userInfo.photoUrl),
                        fit:BoxFit.contain
                        
                        )

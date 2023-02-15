@@ -1,13 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class CurrentUserState extends ChangeNotifier {
- static  String? idUser;
-  static String? name;
-  static String? urlAvatar;
-  static DateTime? lastMessageTime;
-
-final user = FirebaseAuth.instance.currentUser!;
-setUserInfo(){
-  
-}}
+  String? userId;
+  String? imageUrl;
+  // ignore: non_constant_identifier_names
+  get UserId {
+    return userId;
+ }
+  set setUserId(userId) {
+    this.userId = userId;
+    notifyListeners();
+  }// ignore: non_constant_identifier_names
+  get ImageUrl {
+    return imageUrl;
+  }
+  // ignore: non_constant_identifier_names
+  set ImageUrl(imageUrl) {
+    ImageUrl = imageUrl;
+    notifyListeners();
+  }
+}

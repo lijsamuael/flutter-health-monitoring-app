@@ -25,9 +25,8 @@ class CustomOutlinedButton extends StatelessWidget {
                   builder: (context) => ChatScreen(idUser: context.read<ChatedUserState>().getCurrentUser(),),
              ),
           )
-         }
-         
-         else if (icon==Icons.video_call){
+         }       
+         else if (icon==Icons.call_outlined){
           callNumber
          }
          else{  
@@ -40,18 +39,18 @@ class CustomOutlinedButton extends StatelessWidget {
         ),
         label: Text(
           this.text,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white,
               fontFamily: "RobotoCondensed",
               fontSize: 12,
               overflow: TextOverflow.ellipsis),
         ),
         style: OutlinedButton.styleFrom(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 12,
             ),
-            side:BorderSide(width: 1, color: Color.fromARGB(255, 236, 230, 230)),
-            backgroundColor: this.color),
+            side:const BorderSide(width: 1, color: Color.fromARGB(255, 236, 230, 230)),
+            backgroundColor: color),
       ),
     );
   }

@@ -8,7 +8,6 @@ import '../service/authentication.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -16,13 +15,10 @@ class Login extends StatelessWidget {
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    // super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     Future signin() async {
       try {
         await FirebaseAuth.instance
@@ -30,8 +26,7 @@ class Login extends StatelessWidget {
               email: emailController.text.trim(),
               password: passwordController.text.trim(),
             )
-            .then((value) => { 
-             
+            .then((value) => {   
            emailController.clear(),
            passwordController.clear()
             });
@@ -39,9 +34,7 @@ class Login extends StatelessWidget {
         print("there is an error in login");
       }
     }
-
     return Scaffold(
-      // extendBody: true,
       body: Container(
         width: double.infinity,
         height: size.height,
@@ -204,7 +197,7 @@ class Login extends StatelessWidget {
                 )
               ],
             ),
-          ) /* add child content here */,
+          ) 
         ),
       ),
     );
