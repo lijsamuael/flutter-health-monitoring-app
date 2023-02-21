@@ -54,7 +54,8 @@ class UserMessage extends StatelessWidget {
             }
           },
        )
-       ));
+       )
+       );
   }
   Widget buildText(String text) => Center(
         child: Text(

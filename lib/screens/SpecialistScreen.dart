@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:health/components/DoctorsCard.dart';
-import '../widgets/CustomAppBar.dart';
+
+import '../api/FirebaseApi.dart';
+import '../components/MessageCard.dart';
+import '../models/User.dart';
 class SpecialistScreen extends StatelessWidget {
   const SpecialistScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
  body:SingleChildScrollView(
    child: Column(
         children: [
-      Container(
+        Container(
                 margin: EdgeInsets.only(top: 20, bottom: 10),
                 height: 30,
                 child: ListView.builder(
@@ -37,30 +39,45 @@ class SpecialistScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                 )
                 ),
-         Container(
-         margin:EdgeInsets.symmetric(horizontal: 10,),
-         child: Doctorscard(), 
-         ),
-        Container(
-         margin:EdgeInsets.symmetric(horizontal: 10),
-         child: Doctorscard(), 
-         ),
-         Container(
-         margin:EdgeInsets.symmetric(horizontal: 10),
-         child: Doctorscard(), 
-         ),
-         Container(
-         margin:EdgeInsets.symmetric(horizontal: 10),
-         child: Doctorscard(), 
-         ),
-         Container(
-         margin:EdgeInsets.only(bottom: 20),
-         child: Doctorscard(), 
-         ),
+        ///   
+
+                  Container(
+                  height:MediaQuery.of(context).size.height*0.9,
+                   child: StreamBuilder<List<CUser>>(
+                   stream: FirebaseApi.getUsers(),
+                                 builder: (context, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.waiting:
+                        return const Center(child: CircularProgressIndicator());
+                      default:
+                       if (snapshot.hasError) {
+                          print(snapshot.error);
+                          return Center(child: Text('Something Went Wrong Try later'));
+                        } else {
+                          final users = snapshot.data;
+                          if (users!.isEmpty) {
+                            return Center(child: Text('No Users Found'));
+                          } else {
+                            return ListView.builder(   
+                              itemBuilder: ((context, index) => (
+                             DoctorsCard(user:users[index]))
+                            ),
+                            itemCount: users.length,
+                            );
+                          }
+                       }
+                    }
+                                 },
+                      ),
+                 )     
+       ///
         ]
       ),
  ),
      
     );
   }
+
+
+
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:health/state/CurrentUserState.dart';
 import 'package:health/widgets/CustomTextField.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -29,10 +31,10 @@ class ProfileScreen extends StatelessWidget {
                     left: 60,
                     top: 60,
                     right: 30,
-                    child: Stack(children: const [
+                    child: Stack(children:  [
                       CircleAvatar(
                         backgroundImage: AssetImage(
-                          'assets/images/olddoc1.jpg',
+                        Provider.of<CurrentUserState>(context).imageUrl??""
                         ),
                         radius: 50,
                       ),

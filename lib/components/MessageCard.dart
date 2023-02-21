@@ -6,14 +6,12 @@ import 'package:provider/provider.dart';
 import '../models/User.dart';
 
 class MessageCard extends StatelessWidget {
-  MessageCard({super.key, required String message, required this.user}) {
-    
+  MessageCard({super.key, required String message, required this.user}) { 
   }
   CUser user;
   String messages = "no message yet";
   @override
-  Widget build(BuildContext context) {
-      
+  Widget build(BuildContext context) {   
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       decoration: const BoxDecoration(
@@ -50,20 +48,11 @@ class MessageCard extends StatelessWidget {
              radius: 25,
                 )
               : ProfilePicture(
-                  name: user.name ?? "Unknown User",
-                  radius: 25,
-                  fontsize: 21,
-                  tooltip: true,
-                ),
-                trailing: messages == '2'
-                  ? const SizedBox.shrink()
-                     :CircleAvatar(
-                     radius: 10,
-                     child: Text(
-                     messages,
-                     textAlign: TextAlign.center,
-            ),
-          ),
+                 name: user.name ?? "Unknown User",
+                 radius: 25,
+                 fontsize: 21,
+                 tooltip: true,
+         ),                 
         ),
       ),
     );

@@ -5,28 +5,35 @@ import 'package:provider/provider.dart';
 
 import '../screens/ChatScreen.dart';
 
-class CustomOutlinedButton extends StatelessWidget {
+// ignore: must_be_immutable
+class CustomOutlinedButton extends StatefulWidget {
   CustomOutlinedButton(
       {this.phone,required this.color, required this.icon, required this.text, super.key});
   IconData icon;
   String text;
   Color color;
   String ? phone;
+
+  @override
+  State<CustomOutlinedButton> createState() => _CustomOutlinedButtonState();
+}
+
+class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 4),
       child: OutlinedButton.icon(
         onPressed: (() => {
-         if(icon==Icons.message){
+         if(widget.icon==Icons.message){
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChatScreen(idUser: context.read<ChatedUserState>().getCurrentUser(),),
+                  builder: (context) => ChatScreen(idUser: context.read<ChatedUserState>().getUserId,),
              ),
           )
          }       
-         else if (icon==Icons.call_outlined){
+         else if (widget.icon==Icons.call_outlined){
           callNumber
          }
          else{  
@@ -34,11 +41,11 @@ class CustomOutlinedButton extends StatelessWidget {
         }
         ),
         icon: Icon(
-          this.icon,
+          this.widget.icon,
           color: Color.fromARGB(255, 240, 231, 231),
         ),
         label: Text(
-          this.text,
+          this.widget.text,
           style: const TextStyle(
               color: Colors.white,
               fontFamily: "RobotoCondensed",
@@ -50,7 +57,7 @@ class CustomOutlinedButton extends StatelessWidget {
               horizontal: 12,
             ),
             side:const BorderSide(width: 1, color: Color.fromARGB(255, 236, 230, 230)),
-            backgroundColor: color),
+            backgroundColor: widget.color),
       ),
     );
   }

@@ -5,24 +5,27 @@ class ChatedUserState extends ChangeNotifier {
   static String? name;
   static String? urlAvatar;
   DateTime? lastMessageTime;
-  String getCurrentUser() {
-    return idUser ?? "no id";
-  }
+ 
  String  get getUserName {
     return name ?? "NO User";
   }
   String get  getUserId {
-    return idUser ?? "No user";
+    return idUser ?? "No Id";
   }
-  String get  photoUrl {
+  String get photoUrl {
     return urlAvatar ?? "No user";
   }
   void setUserId(String s) {
     idUser = s;
     notifyListeners();
   }
+
   void setUserName(String s) {
     name = s;
     notifyListeners();
+  }
+  void setPhotoUrl(String s) {
+   urlAvatar = s;
+  notifyListeners();
   }
 }

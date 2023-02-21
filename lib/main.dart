@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:health/screens/Login.dart';
 import 'package:health/state/ChatedUserState.dart';
 import 'package:health/state/CurrentUserState.dart';
-
 import 'package:health/users.dart';
 import 'api/FirebaseApi.dart';
 import 'package:health/screens/MainScreen.dart';
@@ -30,7 +29,6 @@ class MyWidget extends StatefulWidget {
   @override
   State<MyWidget> createState() => _MyWidgetState();
 }
-
 class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {

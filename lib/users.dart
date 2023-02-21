@@ -1,3 +1,6 @@
+
+// use Cuser to separatefrom those users defined in firestore
+// 
 import 'models/User.dart';
 class CUsers {
   static get initUsers => <CUser>[
