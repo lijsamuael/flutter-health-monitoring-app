@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/Sympthom.dart';
+
 class CheckBoxCustom extends StatefulWidget {
   bool checkedValue;
   String label;
@@ -13,7 +15,11 @@ class CheckBoxCustom extends StatefulWidget {
   @override
   State<CheckBoxCustom> createState() => _CheckBoxCustomState();
 }
+
 class _CheckBoxCustomState extends State<CheckBoxCustom> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
@@ -23,7 +29,6 @@ class _CheckBoxCustomState extends State<CheckBoxCustom> {
         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
       ),
       value: widget.checkedValue,
-      activeColor: Colors.black,
       contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       secondary: Image(
         image: AssetImage("${widget.imageUrl}"),

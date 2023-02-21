@@ -10,8 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: ListView(
-        scrollDirection: Axis.vertical,
+      child: Column(
         children: [
           const Header(),
           const Align(
@@ -21,45 +20,13 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ),
-          Container(
-            height: 150,
-            margin: const EdgeInsets.only(right: 10),
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(
+            height: 760,
             width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Category("Radiographer"),
-                Category("Sychatrist"),
-                Category("Dentist"),
-                Category("Heart Specialist"),
-                Category("Heart Specialist"),
-                Category("Heart Specialist"),
-                Category("Heart Specialist"),
-              ],
-            ),
-          ),
-          const Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              "Available Doctors",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              children: [
-                Doctorscard(),
-                Doctorscard(),
-                Doctorscard(),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('See More'),
-                ),
-              ],
-            ),
+            child: Category(),
           ),
         ],
       ),

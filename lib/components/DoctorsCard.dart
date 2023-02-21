@@ -7,11 +7,11 @@ class Doctorscard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-     onTap:()=>Navigator.of(context).pushNamed('DoctorDetail'),
+      onTap: () => Navigator.of(context).pushNamed('DoctorDetail'),
       child: Container(
         height: 200,
         width: double.infinity,
-        margin: const EdgeInsets.symmetric(vertical:5),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
@@ -61,8 +61,8 @@ class Doctorscard extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "7 Years",
-                        style:
-                            TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
                       )),
                   const SizedBox(
                     height: 20,
@@ -80,7 +80,8 @@ class Doctorscard extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "160",
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],

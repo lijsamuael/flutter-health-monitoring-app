@@ -56,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                     builder: (context) => const UserMessage()),
+                        builder: (context) => const UserMessage()),
                   );
                 },
               ),
@@ -71,20 +71,14 @@ class _MainScreenState extends State<MainScreen> {
                   padding: const EdgeInsets.only(bottom: 0, top: 30),
                   child: Column(
                     children: [
-                      //  CircleAvatar(
-                      //   foregroundImage:
-                      //       AssetImage(user.photoURL??""),
-                      //   maxRadius: 50,
-                      // ),
-
                       ProfilePicture(
-                      name: user.email!.toUpperCase()??"Unknown User",
-                      radius: 50,
-                       fontsize: 40,
-                       tooltip: true,
-                    ),
+                        name: user.email!.toUpperCase() ?? "Unknown User",
+                        radius: 50,
+                        fontsize: 40,
+                        tooltip: true,
+                      ),
                       Center(
-                        child: Text(user.email??""),
+                        child: Text(user.email ?? ""),
                       )
                     ],
                   ),
@@ -144,7 +138,7 @@ class _MainScreenState extends State<MainScreen> {
               ],
             ),
           ),
-          body: _children.elementAt(_currentIndex),
+          body: ListView(children: [_children.elementAt(_currentIndex)]),
           bottomNavigationBar: BottomNavigationBar(
             fixedColor: Colors.black,
             type: BottomNavigationBarType.fixed,

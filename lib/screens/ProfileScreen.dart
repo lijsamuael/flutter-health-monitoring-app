@@ -6,8 +6,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
+    return Container(
+        child: SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.only(top: 10, bottom: 65, left: 10, right: 10),
         child: Column(
@@ -49,12 +49,6 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ]),
                   ),
-                  // Positioned(
-                  //    top:20,
-                  //   child: Icon(Icons.arrow_back,
-                  //   color:Color.fromARGB(255, 247, 242, 242)
-                  //   ),
-                  // ),
                   const Positioned(
                       left: 50,
                       top: 20,
