@@ -8,7 +8,6 @@ class ChatedUserState extends ChangeNotifier {
   String getCurrentUser() {
     return idUser ?? "no id";
   }
-
  String  get getUserName {
     return name ?? "NO User";
   }

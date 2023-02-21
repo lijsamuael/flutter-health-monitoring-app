@@ -16,14 +16,13 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final _controller = TextEditingController();
+  var MessageController = TextEditingController();
   String customMessage = '';
 
   @override
   Widget build(BuildContext context) {
-    final idUser = ModalRoute.of(context)!.settings.arguments.toString();
-    final Currentuser = FirebaseAuth.instance.currentUser!.uid;
-    widget.idUser = idUser;
+    var idUser = ModalRoute.of(context)!.settings.arguments.toString();
+    var Currentuser = FirebaseAuth.instance.currentUser!.uid;
     return Scaffold(
       appBar: CustomAppBar(
         title: context.read<ChatedUserState>().getUserName,
@@ -36,8 +35,8 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-                child: StreamBuilder<List<Message>>(
-              stream: FirebaseApi.getMessages(widget.idUser,Currentuser),
+             child: StreamBuilder<List<Message>>(
+              stream: FirebaseApi.getMessages(widget.idUser, Currentuser),
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
@@ -55,10 +54,8 @@ class _ChatScreenState extends State<ChatScreen> {
                               itemCount: messages.length,
                               itemBuilder: (context, index) {
                                 final message = messages[index];
-                                return isSenderOrAccepter(
-                                    message,
-                                    message.idUser ==
-                                        FirebaseAuth.instance.currentUser!.uid);
+                                return SenderOrAccepter(message,
+                                message.idUser!="$Currentuser$idUser");
                               },
                             );
                     }
@@ -92,7 +89,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               onPressed: () {}),
                           Expanded(
                             child: TextField(
-                              controller: _controller,
+                              controller: MessageController,
                               textCapitalization: TextCapitalization.sentences,
                               autocorrect: true,
                               decoration: const InputDecoration(
@@ -136,8 +133,7 @@ class _ChatScreenState extends State<ChatScreen> {
           style: TextStyle(fontSize: 24),
         ),
       );
-
-  isSenderOrAccepter(Message message, bool isme) {
+  SenderOrAccepter(Message message,bool isme) {
     if (isme) {
       return ChatSender(message: message);
     } else {
@@ -147,8 +143,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void sendMessage() async {
     FocusScope.of(context).unfocus();
-    await FirebaseApi.uploadMessage(widget.idUser, customMessage)
-        .then((value) => _controller.clear(),
-        );
+    MessageController.clear();
+    await FirebaseApi.uploadMessage(widget.idUser, customMessage);
   }
 }

@@ -14,15 +14,14 @@ class FirebaseApi {
     final user = FirebaseAuth.instance.currentUser!;
     var currentUserId = user.uid;
     final refMessages = FirebaseFirestore.instance
-        .collection('chats/$currentUserId/$idUser/messages');
+        .collection('chats/$currentUserId$idUser/messages');
     final newMessage = Message(
-      idUser: idUser,
-      urlAvatar: user.photoURL ?? "",
+      idUser:'$currentUserId$idUser',
+      urlAvatar:user.photoURL ?? "",
       username: user.displayName ?? "",
       message: message,
       createdAt: DateTime.now(),
     );
-
     await refMessages.add(newMessage.toJson());
     final refUsers = FirebaseFirestore.instance.collection('users');
     await refUsers
@@ -31,7 +30,7 @@ class FirebaseApi {
   }
   static Stream<List<Message>> getMessages(String idUser, String CurrentUserId) =>
       FirebaseFirestore.instance
-          .collection('chats/$CurrentUserId/messages')
+          .collection('chats/$CurrentUserId$idUser/messages')
           .orderBy(MessageField.createdAt, descending: true)
           .snapshots()
           .transform(Utils.transformer(Message.fromJson));

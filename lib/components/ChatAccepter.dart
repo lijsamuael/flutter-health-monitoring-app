@@ -19,8 +19,7 @@ class ChatAccepter extends StatelessWidget {
               bottomRight: Radius.circular(5),
             )),
         child: Text(
-            message.message)
-    
+          message.message)
       ),
 
     );

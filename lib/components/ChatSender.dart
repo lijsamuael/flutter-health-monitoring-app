@@ -8,8 +8,7 @@ class ChatSender extends StatelessWidget {
  ChatSender({super.key, required this.message});
   Message message;
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context){ 
     return Align(
       child: Container(
         child:  Text(message.message),

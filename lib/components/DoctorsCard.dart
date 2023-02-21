@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:health/screens/DoctorDetail.dart';
-
 class Doctorscard extends StatelessWidget {
   Doctorscard({super.key}) {}
   

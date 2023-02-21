@@ -12,7 +12,6 @@ class DiseasePrediction extends StatefulWidget {
 
 class _DiseasePredictionState extends State<DiseasePrediction> {
   bool checkedValue = false;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
