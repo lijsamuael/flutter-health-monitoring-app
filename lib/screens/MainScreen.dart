@@ -12,11 +12,9 @@ import 'UserMessage.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
-
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
-
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
   static const List<Widget> _children = [
@@ -31,7 +29,6 @@ class _MainScreenState extends State<MainScreen> {
       _currentIndex = index;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
@@ -55,12 +52,12 @@ class _MainScreenState extends State<MainScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                     builder: (context) => const UserMessage()),
+                        builder: (context) => const UserMessage()),
                   );
                 },
               ),
             ],
-            backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
           ),
           drawer: Drawer(
             child: ListView(
@@ -82,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
                        tooltip: true,
                     ),
                       Center(
-                        child: Text(user.email??""),
+                        child: Text(user.email ?? ""),
                       )
                     ],
                   ),
@@ -142,7 +139,7 @@ class _MainScreenState extends State<MainScreen> {
               ],
             ),
           ),
-          body: _children.elementAt(_currentIndex),
+          body: ListView(children: [_children.elementAt(_currentIndex)]),
           bottomNavigationBar: BottomNavigationBar(
             fixedColor: Colors.black,
             type: BottomNavigationBarType.fixed,

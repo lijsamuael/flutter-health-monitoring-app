@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
+import 'package:health/state/ChatedUserState.dart';
 import 'package:health/state/CurrentUserState.dart';
 import 'package:health/widgets/CustomTextField.dart';
 import 'package:provider/provider.dart';
@@ -8,8 +11,9 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
+  final user = FirebaseAuth.instance.currentUser!;
+    return Container(
+        child: SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.only(top: 10, bottom: 65, left: 10, right: 10),
         child: Column(
@@ -32,13 +36,19 @@ class ProfileScreen extends StatelessWidget {
                     top: 60,
                     right: 30,
                     child: Stack(children:  [
-                      CircleAvatar(
-                        backgroundImage: AssetImage(
-                        Provider.of<CurrentUserState>(context).imageUrl??""
-                        ),
-                        radius: 50,
-                      ),
-                      Positioned(
+                      // CircleAvatar(
+                      //   backgroundImage: AssetImage(
+                      //   Provider.of<CurrentUserState>(context).imageUrl??""
+                      //   ),
+                      //   radius: 50,
+                      // ),
+                      ProfilePicture(
+                      name: user.email??"NO user",
+                      radius: 50,
+                       fontsize: 40,
+                       tooltip: true,
+                    ),
+                      const Positioned(
                         top: 55,
                         left: 65,
                         child: CircleAvatar(
@@ -51,12 +61,6 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ]),
                   ),
-                  // Positioned(
-                  //    top:20,
-                  //   child: Icon(Icons.arrow_back,
-                  //   color:Color.fromARGB(255, 247, 242, 242)
-                  //   ),
-                  // ),
                   const Positioned(
                       left: 50,
                       top: 20,

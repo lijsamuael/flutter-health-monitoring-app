@@ -34,7 +34,7 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
           )
          }       
          else if (widget.icon==Icons.call_outlined){
-          callNumber
+          callNumber()
          }
          else{  
          }

@@ -26,16 +26,6 @@ class DoctorDetail extends StatelessWidget {
                   Container(
                       width: 340,
                       height: 290,
-                      //     child: Flexible(
-                      //     child: Padding(
-                      //       padding: EdgeInsets.only(top:15),
-                      //       child: Image.asset(
-                      //         'assets/images/mendoc.jpg',
-                      //         fit: BoxFit.cover,
-                      //         alignment: Alignment.center,
-                      //       ),
-                      //     ),
-                      //  ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
@@ -94,7 +84,6 @@ class DoctorDetail extends StatelessWidget {
                     ],
                   ),
                   const AboutComponent(),
-                  OutlinedButton(onPressed: callNumber, child: Text("say hello"))
                 ]),
           ),
         ));

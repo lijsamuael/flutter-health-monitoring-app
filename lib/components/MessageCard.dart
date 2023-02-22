@@ -23,6 +23,7 @@ class MessageCard extends StatelessWidget {
         ),
         color: Colors.white,
       ),
+      
       child: GestureDetector(
         onTap: () {
         Provider.of<ChatedUserState>(context,listen: false).setUserId(user.idUser??"No Id");
@@ -36,6 +37,7 @@ class MessageCard extends StatelessWidget {
             ),
           );  
         },
+
         child: ListTile(
           title: Text(
             user.name ?? "Unknown name",
@@ -52,7 +54,7 @@ class MessageCard extends StatelessWidget {
                  radius: 25,
                  fontsize: 21,
                  tooltip: true,
-         ),                 
+         ),  
         ),
       ),
     );

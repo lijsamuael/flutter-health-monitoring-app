@@ -11,9 +11,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height:MediaQuery.of(context).size.height*0.9,
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: ListView(
-        scrollDirection: Axis.vertical,
+      child: Column(
         children: [
           const Header(),
           // const Align(
